@@ -14,7 +14,6 @@ class App extends React.Component {
     fetch(`/draw?deck_id=${this.state.deckId}`)
     .then(data => {return data.json()})
     .then(res => console.log(res))
-
   }
 
 
