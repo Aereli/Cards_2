@@ -12,12 +12,14 @@ class App extends React.Component {
             newPile: []
           }
 
+
   componentDidMount(){
     fetch('/deck')
       .then(response => {return response.json()})
       .then(res => this.setState({
          deckId: res.deckId
      }))
+
   }
 
   drawCard = () => {
@@ -96,6 +98,8 @@ class App extends React.Component {
                 // console.log(this.state.cardsObject.map(card => card.code))
               }
           </div>
+
+     
       </div>
     )
   }
