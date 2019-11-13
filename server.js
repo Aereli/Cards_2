@@ -5,14 +5,47 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require("express")
 const path = require("path")
 const app = express()
+const axios = require('axios')
 
-// JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
-app.get('/api/demo', (request, response) => {
-  response.json({
-    message: "Hello from server.js"
-  })
+
+app.get('/deck', async (request, response) => {
+  try{
+      let {data} = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+    const deckId = data.deck_id
+  const cardRemain = data.remaining
+  const deckObject = {deckId, cardRemain}
+    // console.log("deckid, server side",deckId)
+    response.send(deckObject)
+  } catch(e){
+    console.log(e)
+  } 
 })
-// END DEMO
+
+// app.get('/pile', async (request,  response) => {
+//   try{
+//     const deckId = await request.query.deck_id
+//     let {data} = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/pile/`)
+//     // const newPile = data
+//       response.send(data)
+//     // console.log( data)
+//   } catch(error){
+//     console.log(error)
+//   }
+// })
+
+app.get('/draw', async (request, response) => {
+  try{
+    const deckId = await request.query.deck_id
+    let {data} = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
+    const cardsObject = data
+    // console.log("Second api call to draw cards", cardsObject)  
+    response.send(cardsObject)  
+  } catch(error){
+    console.log(error)
+  }
+})
+
+
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

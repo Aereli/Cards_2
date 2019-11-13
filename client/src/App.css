@@ -1,15 +1,48 @@
-/* JUST FOR DEMO PURPORSES, REPLACE WITH YOUR OWN CODE */
 
-#demo{
+#egyptian-rat-slap{
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3 ,1fr);
 }
 
-#demo h1{
+.center-cards{
   display: grid;
-  place-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
 }
 
-/* END DEMO */
+.center-cards img{
+  display: grid;
+  width: 8rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.player-1{
+  display: grid;
+  grid-column-start: 2; 
+}
+
+.draw-button-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+.draw-button{
+  display: grid;
+  grid-column-start: 2;
+  width: 4rem;
+  height: 4rem; 
+}
+
+nav{
+  width: 100vw;
+  height: 5rem;
+}
+nav h3{
+  margin: 15px;
+}
